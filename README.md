@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="images/banniere.png" alt="Prédire les pannes de camions avant qu'elles n'arrivent" width="820">
+  <img src="DAF%20case%20study/images/banniere.png" alt="Prédire les pannes de camions avant qu'elles n'arrivent" width="820">
 </p>
 
 <h1 align="center">IA appliquée aux poids lourds</h1>
@@ -42,7 +42,7 @@ Ce projet fait suite à la session de présentation du stage *Ingénieur Informa
 
 ## 1. Étude principale : prédire les pannes (Scania APS)
 
-✅ **Données réelles** · [`01_scania_aps.ipynb`](01_scania_aps.ipynb)
+✅ **Données réelles** · [`01_scania_aps.ipynb`](DAF%20case%20study/01_scania_aps.ipynb)
 
 **La question :** peut-on prédire qu'un camion va tomber en panne de son système d'air comprimé (freins, vitesses) pour intervenir avant qu'il soit immobilisé ?
 
@@ -50,19 +50,19 @@ Ce projet fait suite à la session de présentation du stage *Ingénieur Informa
 
 ### Des données imparfaites, mais un problème localisé
 
-![Part de valeurs manquantes](images/qualite_donnees.png)
+![Part de valeurs manquantes](DAF%20case%20study/images/qualite_donnees.png)
 
 8,3 % des cases sont vides et 8 capteurs le sont à plus de 50 %. **Trouvaille :** les camions en panne ont en moyenne **17,3 %** de mesures manquantes, contre **8,2 %** pour les autres. Un capteur muet est déjà un signal.
 
 ### Le bon seuil divise le coût par trois
 
-![Coût selon le seuil de décision](images/cout_selon_seuil.png)
+![Coût selon le seuil de décision](DAF%20case%20study/images/cout_selon_seuil.png)
 
 Par défaut, un modèle annonce une panne au-delà de 50 % de certitude. C'est trop prudent quand rater une panne coûte 50 fois plus qu'une fausse alerte. Le seuil optimal du Random Forest est **0,10**. Il est choisi par validation croisée sur le jeu d'entraînement : le jeu de test ne sert qu'au résultat final.
 
 ### Le résultat
 
-![Coût avant / après](images/cout_avant_apres.png)
+![Coût avant / après](DAF%20case%20study/images/cout_avant_apres.png)
 
 | Approche | Pannes détectées | Fausses alertes | Coût total |
 |---|---:|---:|---:|
@@ -75,7 +75,7 @@ Par défaut, un modèle annonce une panne au-delà de 50 % de certitude. C'est t
 
 ### Ce sur quoi le modèle s'appuie
 
-<p align="center"><img src="images/importance_variables.png" alt="Importance des variables" width="600"></p>
+<p align="center"><img src="DAF%20case%20study/images/importance_variables.png" alt="Importance des variables" width="600"></p>
 
 Une quinzaine de capteurs portent l'essentiel de la décision : le modèle n'est pas une boîte noire. **Limite :** les capteurs sont anonymisés par Scania, on ne peut donc pas en donner le sens mécanique. Avec de vraies données, les experts atelier pourraient le vérifier.
 
@@ -83,13 +83,13 @@ Une quinzaine de capteurs portent l'essentiel de la décision : le modèle n'est
 
 ## 2. Segmenter les flottes pour l'électrique
 
-⚠️ **Données simulées** · [`02_segmentation_flottes.ipynb`](02_segmentation_flottes.ipynb) · Clustering (K-means), ACP
+⚠️ **Données simulées** · [`02_segmentation_flottes.ipynb`](DAF%20case%20study/02_segmentation_flottes.ipynb) · Clustering (K-means), ACP
 
 **La question :** parmi les clients diesel, lesquels utilisent déjà leurs camions d'une façon compatible avec l'électrique ?
 
-![Choix du nombre de groupes](images/choix_k.png)
+![Choix du nombre de groupes](DAF%20case%20study/images/choix_k.png)
 
-![Les 4 profils et leur compatibilité électrique](images/segments_electrique.png)
+![Les 4 profils et leur compatibilité électrique](DAF%20case%20study/images/segments_electrique.png)
 
 - Le K-means retrouve les **4 profils d'usage cachés** (ARI = 0,98) : la méthode est validée.
 - **97,9 %** des camions en livraison urbaine et **93,9 %** sur chantier ont un usage compatible avec l'électrique, contre 0 % en longue distance.
@@ -99,11 +99,11 @@ Une quinzaine de capteurs portent l'essentiel de la décision : le modèle n'est
 
 ## 3. Estimer la valeur des occasions
 
-⚠️ **Données simulées** · [`03_valeur_occasion.ipynb`](03_valeur_occasion.ipynb) · Régression
+⚠️ **Données simulées** · [`03_valeur_occasion.ipynb`](DAF%20case%20study/03_valeur_occasion.ipynb) · Régression
 
 **La question :** combien vaut ce camion d'occasion ?
 
-![Prix prédit contre prix réel](images/occasion_predit_vs_reel.png)
+![Prix prédit contre prix réel](DAF%20case%20study/images/occasion_predit_vs_reel.png)
 
 | Modèle | Erreur moyenne (MAE) | R² |
 |---|---:|---:|
@@ -116,11 +116,11 @@ La décote n'est pas proportionnelle : la régression linéaire sous-estime les 
 
 ## 4. Prévoir la demande en pièces détachées
 
-✅ **Données réelles** (2 674 pièces automobiles, 1998-2002, jeu de R. Hyndman) · [`04_pieces_detachees.ipynb`](04_pieces_detachees.ipynb) · Prévision de demande
+✅ **Données réelles** (2 674 pièces automobiles, 1998-2002, jeu de R. Hyndman) · [`04_pieces_detachees.ipynb`](DAF%20case%20study/04_pieces_detachees.ipynb) · Prévision de demande
 
 **La question :** combien de pièces stocker, quand **75 % des mois n'ont aucune vente** ?
 
-![Comparaison des méthodes de prévision](images/pieces_comparaison.png)
+![Comparaison des méthodes de prévision](DAF%20case%20study/images/pieces_comparaison.png)
 
 Le modèle d'IA global (gradient boosting appris sur toutes les pièces à la fois) a la plus petite erreur et réduit les pièces en rupture de **33 % à 24 %** par rapport à la moyenne des 12 derniers mois, pour un stock équivalent. Croston, pourtant la référence théorique, fait moins bien ici.
 
@@ -128,13 +128,13 @@ Le modèle d'IA global (gradient boosting appris sur toutes les pièces à la fo
 
 ## 5. Lire automatiquement les plaintes
 
-✅ **Données réelles** (537 plaintes de conducteurs de poids lourds, NHTSA) · [`05_plaintes_texte.ipynb`](05_plaintes_texte.ipynb) · Traitement du texte
+✅ **Données réelles** (537 plaintes de conducteurs de poids lourds, NHTSA) · [`05_plaintes_texte.ipynb`](DAF%20case%20study/05_plaintes_texte.ipynb) · Traitement du texte
 
 **La question :** de quoi parlent des centaines de textes libres, et quel défaut est en train de monter ?
 
 <p align="center">
-  <img src="images/plaintes_matrice_confusion.png" alt="Matrice de confusion" width="380">
-  <img src="images/plaintes_evolution.png" alt="Évolution des plaintes par famille" width="460">
+  <img src="DAF%20case%20study/images/plaintes_matrice_confusion.png" alt="Matrice de confusion" width="380">
+  <img src="DAF%20case%20study/images/plaintes_evolution.png" alt="Évolution des plaintes par famille" width="460">
 </p>
 
 - **72 %** de plaintes bien classées à partir du texte seul (contre 29 % en répondant toujours la famille la plus fréquente).
@@ -145,11 +145,11 @@ Le modèle d'IA global (gradient boosting appris sur toutes les pièces à la fo
 
 ## 6. Un assistant pour les techniciens
 
-✅ **Document réel** (*California Commercial Driver Handbook*, 208 pages) · [`06_assistant_technicien_rag.ipynb`](06_assistant_technicien_rag.ipynb) · Recherche documentaire (première étape d'un RAG)
+✅ **Document réel** (*California Commercial Driver Handbook*, 208 pages) · [`06_assistant_technicien_rag.ipynb`](DAF%20case%20study/06_assistant_technicien_rag.ipynb) · Recherche documentaire (première étape d'un RAG)
 
 **La question :** un technicien pose une question en langage courant ; le système retrouve la page du manuel qui y répond.
 
-![Résultats de l'assistant](images/assistant_technicien.png)
+![Résultats de l'assistant](DAF%20case%20study/images/assistant_technicien.png)
 
 **3 bonnes réponses sur 4**, page à l'appui. L'échec est instructif : la réponse est page 108, mais le manuel écrit *leakage* là où la question dit *leaks*. La recherche par mots-clés cherche des mots, pas des idées ; l'amélioration prévue est la **recherche sémantique** par *embeddings*, puis la rédaction de la réponse par un LLM.
 
